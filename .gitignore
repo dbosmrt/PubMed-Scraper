@@ -1,0 +1,13 @@
+# Virtual environments
+.env 
+pubvenv/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Python
+__pycache__
+
+#System specific files 
+Thumbs.db
+
