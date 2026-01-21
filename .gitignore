@@ -11,3 +11,5 @@ __pycache__
 #System specific files 
 Thumbs.db
 
+#Data files
+data/
