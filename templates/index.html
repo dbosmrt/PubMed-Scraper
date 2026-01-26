@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PubMed Scraper | Research Paper Collection</title>
+    <meta name="description"
+        content="A modern web interface for scraping research papers from PubMed, arXiv, and bioRxiv">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">PS</span>
+                <h1>PubMed Scraper</h1>
+            </div>
+            <p class="tagline">Collect research papers from multiple sources</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Search Configuration Card -->
+            <section class="card config-card" id="config-section">
+                <div class="card-header">
+                    <span class="card-icon">[S]</span>
+                    <h2>Search Configuration</h2>
+                </div>
+                <div class="card-body">
+                    <form id="scrape-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="query">Search Query</label>
+                                <input type="text" id="query" name="query" value="biotechnology"
+                                    placeholder="e.g., genomics, CRISPR, cancer research">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="source">Data Source</label>
+                                <select id="source" name="source">
+                                    <option value="pubmed">PubMed</option>
+                                    <option value="arxiv">arXiv</option>
+                                    <option value="biorxiv">bioRxiv</option>
+                                    <option value="all">All Sources</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="country">Country Filter</label>
+                                <select id="country" name="country">
+                                    <option value="all">All Countries</option>
+                                    <option value="USA">USA</option>
+                                    <option value="IND">India</option>
+                                    <option value="CHN">China</option>
+                                    <option value="JPN">Japan</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="max_papers">Maximum Papers: <span id="papers-count">100</span></label>
+                                <input type="range" id="max_papers" name="max_papers" min="10" max="500" value="100"
+                                    step="10">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="start-btn">
+                            <span class="btn-icon">></span>
+                            Start Scraping
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Progress Card -->
+            <section class="card progress-card hidden" id="progress-section">
+                <div class="card-header">
+                    <span class="card-icon">[P]</span>
+                    <h2>Scraping Progress</h2>
+                </div>
+                <div class="card-body">
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                        <div class="progress-stats">
+                            <span id="progress-count">0</span> / <span id="progress-max">100</span> papers
+                        </div>
+                    </div>
+                    <p class="progress-message" id="progress-message">Initializing...</p>
+                </div>
+            </section>
+
+            <!-- Results Card -->
+            <section class="card results-card hidden" id="results-section">
+                <div class="card-header">
+                    <span class="card-icon">[R]</span>
+                    <h2>Results</h2>
+                    <div class="header-actions">
+                        <button class="btn btn-secondary" id="download-json">
+                            Download JSON
+                        </button>
+                        <button class="btn btn-secondary" id="download-csv">
+                            Download CSV
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="results-summary" id="results-summary">
+                        Found <span id="total-papers">0</span> papers
+                    </div>
+                    <div class="table-container">
+                        <table class="results-table" id="results-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Title</th>
+                                    <th>Authors</th>
+                                    <th>Journal</th>
+                                    <th>Year</th>
+                                    <th>Country</th>
+                                    <th>Source</th>
+                                </tr>
+                            </thead>
+                            <tbody id="results-body">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination" id="pagination">
+                        <button class="btn btn-small" id="prev-page">Previous</button>
+                        <span id="page-info">Page 1</span>
+                        <button class="btn btn-small" id="next-page">Next</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>PubMed Scraper - Research Paper Collection Tool</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+
+</html>
