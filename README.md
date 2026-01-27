@@ -2,7 +2,6 @@
 
 A distributed microservice-based web crawler for fetching open-source research papers from PubMed, arXiv, bioRxiv, and medRxiv. Includes a modern web interface for easy paper collection.
 
-![PubMed Scraper](PubMed%20Scraper.png)
 
 ## Features
 
@@ -87,46 +86,25 @@ python -m src.cli scrape "machine learning" \
   --format csv
 ```
 
-## Architecture
-
-```
-+------------------------------------------------------------------+
-|                        Client Layer                               |
-|              Web UI  |  REST API  |  Python SDK  |  CLI          |
-+------------------------------------------------------------------+
-                              |
-+------------------------------------------------------------------+
-|                      API Gateway (Flask/FastAPI)                  |
-+------------------------------------------------------------------+
-                              |
-+------------------------------------------------------------------+
-|                    Worker Microservices                           |
-|  +-----------+  +-----------+  +-----------+  +-----------+      |
-|  |  PubMed   |  |  arXiv    |  | bioRxiv   |  | Classifier|      |
-|  |  Crawler  |  |  Crawler  |  |  Crawler  |  |           |      |
-|  +-----------+  +-----------+  +-----------+  +-----------+      |
-+------------------------------------------------------------------+
-```
-
 ## Project Structure
 
 ```
 PubMed-Scraper/
 |-- src/
-|   |-- crawlers/          # Source-specific crawlers
-|   |   |-- base/          # Abstract crawler and rate limiter
-|   |   |-- pubmed/        # PubMed E-utilities client
-|   |   |-- arxiv/         # arXiv API client
-|   |   +-- biorxiv/       # bioRxiv/medRxiv client
-|   |-- processors/        # Data processing and classification
-|   |-- export/            # Multi-format exporters
-|   |-- gateway/           # FastAPI REST API
-|   +-- shared/            # Config, constants, exceptions
-|-- templates/             # HTML templates for web UI
-|-- static/                # CSS and JavaScript for web UI
-|-- web_app.py             # Flask web application
-|-- requirements.txt       # Python dependencies
-+-- tests/                 # Test suite
+|   |-- crawlers/          
+|   |   |-- base/          
+|   |   |-- pubmed/        
+|   |   |-- arxiv/     
+|   |   +-- biorxiv/    
+|   |-- processors/     
+|   |-- export/       
+|   |-- gateway/       
+|   +-- shared/         
+|-- templates/       
+|-- static/            
+|-- web_app.py            
+|-- requirements.txt     
++-- tests/                 
 ```
 
 ## Supported Paper Types
